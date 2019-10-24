@@ -1,0 +1,11 @@
+
+<%= form_for @contact do | f | %>
+<%=f.label :Contact_Type %>
+<%= f.collection_select :kind, @kind, :to_s, :to_s, include_blank: false %>
+<%= f.label :Contact_Value %>
+<%=f.text_field :value %>
+<%= f.hidden_field :user_id, :value => @user.id %>
+<%=f.submit %>
+<%end%>
+
+<%= console %>

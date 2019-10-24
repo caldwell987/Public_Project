@@ -1,0 +1,33 @@
+
+<% if flash[:errors]%>
+
+<% flash[:errors].each do |error|%>
+  <%= error %>
+<% end %>
+<% end %>
+
+
+<%= form_for @user do |f| %>
+
+<%= f.label :first_name %>
+<%= f.text_field :firstname %>
+<%= tag.br %>
+
+<%= f.label :last_name %>
+<%= f.text_field :lastname %>
+<%= tag.br %>
+
+<%= f.label :username %>
+<%= f.text_field :username%>
+<%= tag.br %>
+
+<%= f.label :password %>
+<%= f.password_field :password %>
+<%= tag.br %>
+
+<%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %>
+<%= tag.br %>
+
+<%= f.submit "Register"%>
+<% end %>

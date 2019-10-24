@@ -1,0 +1,18 @@
+<br><br><br>
+<%= tag.h4 "Hello: #{@user.firstname}" %>
+<% @contacts.each do |i| %>
+<li>
+<%= i.kind %>:
+<%= link_to i.value, edit_contact_path(i) %>
+</li>
+<% end %>
+
+<br><br><br>
+
+<%= form_with url:'/logout', method: 'delete' do |f| %>
+
+<%= f.submit "Logout" %>
+
+<% end %>
+
+<%= console %>

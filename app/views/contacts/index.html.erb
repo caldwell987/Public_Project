@@ -1,0 +1,6 @@
+<br><br><br><% @contacts.each do |i| %>
+<li>
+<%= link_to i.value, contact_path(i) %><br>
+</li>
+<% end %>
+

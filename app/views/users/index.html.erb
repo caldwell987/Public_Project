@@ -1,0 +1,6 @@
+<h1>Users:</h1>
+<% @users.each do |i| %>
+<li>
+    <%= link_to i.firstname, user_path(i.id) %>
+ </li>
+<% end %>
