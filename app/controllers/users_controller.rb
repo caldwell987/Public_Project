@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   skip_before_action :authenticated, only: [:new, :create]
 
   def index
-    @user = User.find(session[:user_id])
     @users = User.all
   end
 
