@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
 
 
+  resources :profiles
   resources :users
   resources :contacts
+  resources :friendships
   get 'friends/index'
   get 'friends/destroy'
+
+  root to: 'sessions#new'
 
 
   get '/register', to: 'users#new'

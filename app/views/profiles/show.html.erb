@@ -33,39 +33,22 @@ body {font-family: "Lato", sans-serif}
 
 
 
-<h1> <%= @user.firstname %> <%= @user.lastname %></h1>
+<h1> <%= @selectuser.firstname %> <%= @selectuser.lastname %></h1>
     <br>
 <h2>Contacts:</h2>
 <br>
-
 <h5>
-<% @contacts.each do |i| %>
+<% @selectuser.contacts.each do |i| %>
 <li>
 <%= i.kind %>:
-<%= link_to i.value, edit_contact_path(i) %>
+<%= i.value %>
 </li>
 <% end %>
 </h5>
 
-    
-
-<%= link_to 'Add Contact', new_contact_path, class: 'button' %>
-<%= form_for @user do |f| %>
-  <%= f.fields_for :contacts, @user.contacts.build do |c| %>
-    <%= c.hidden_field :user_id, value: @user.id%>
-    <%= c.text_field :kind, placeholder: 'Kind' %>
-    <%= c.text_field :value, placeholder: 'Value' %>
-  <% end %>
-  <%= f.submit %>
-<% end %>
-
-<%= form_with url:'/logout', method: 'delete' do |f| %>
-	<%= f.submit "Logout", class: 'button' %>
-<% end %>
-
 <br><br><br>
 
-<p>Username: <%=h @user.username %></p>
+<p>Logged in as: <%=h @currentuser.firstname %> <%=h @currentuser.lastname %></p>
 <p><%= link_to "Find Friends", users_path %></p>
 
 
@@ -76,26 +59,8 @@ body {font-family: "Lato", sans-serif}
 
 <br><br><br>
 
-<h2>Your Friends</h2>
-<ul>
-  <% for friendship in @user.friendships %>
-  <li>
-    <%= h friendship.friend.username %>
-    (<%= link_to "remove", friendship, :method => :delete %>)
-  </li>
-  <% end %>  
-</ul>
-<br><br><br>
 
-<h2>Users Who Have Befriended You</h2>
-<ul>
-  <% for user in @user.inverse_friends %>
-  <li><%= h user.username %></li>
-  <% end %>
-</ul>
 
-<br><br><br>
-<br><br><br>
 
 <%= console %>
 

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticated, only: [:new, :create]
 
   def index
+    @user = User.find(session[:user_id])
     @users = User.all
   end
 
@@ -12,17 +13,16 @@ class UsersController < ApplicationController
     @contacts = current_user.contacts
   end
 
-
   def new
     @users = User.all
     @user = User.new
   end
 
-
   def create
     @user = User.new(users_params)
     if @user.valid?
       @user.save
+      session[:user_id] = @user.id
       redirect_to @user
     else
       flash[:errors] = @user.errors.full_messages
@@ -44,15 +44,28 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def add_friend
+    
+  end
+    
+  def remove_friend
+      
+  end
+
+
 private
 
   def current_user
     @user = User.find(session[:user_id])
   end
+
+  def select_contact
+    @selectcontacts = User.find(params[:id])
+  end
   
 
   def users_params
-    params.require(:user).permit(:username, :password, :password_confirmation, :firstname, :lastname)
+    params.require(:user).permit(:username, :password, :password_confirmation, :firstname, :lastname, contacts_attributes: [:user_id, :kind, :value, :_destroy])
   end
 
 end

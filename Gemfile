@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'popper_js'
 gem 'tether-rails'
+gem 'pg'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
@@ -54,12 +55,8 @@ group :test do
   gem 'webdrivers'
 end
 
-group :development do
-  gem 'sqlite3', '~> 1.4'
-end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
