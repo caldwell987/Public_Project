@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
 
-  get '/users/:id', to: 'users#show'
-  get '/users/', to: 'users#index'
+  resources :users
   resources :contacts
   get 'friends/index'
   get 'friends/destroy'

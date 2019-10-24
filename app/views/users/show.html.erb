@@ -49,10 +49,10 @@ body {font-family: "Lato", sans-serif}
 
     
 
-
+<a href='/contacts/new'>Add Contact</a>
 
 <br><br><br><br>
-<button class="button" style="vertical-align:middle"><span>Add Contact</span><a href='/contacts/new'></a> <br><br></button>
+<button class="button" style="vertical-align:middle"><span>Add Contact</span><a href='/contacts/new'></a></button>
 <%= form_with url:'/logout', method: 'delete' do |f| %>
 <button class="button" style="vertical-align:middle"> <span><%= f.submit "Logout" %> </span></button>
 <% end %>
