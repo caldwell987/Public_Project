@@ -15,6 +15,10 @@ class UsersController < ApplicationController
     @kind = ["Phone", "Email", "Website", "Linkedin", "Facebook", "Instagram", "Twitter"]
   end
 
+  def friends
+    @user = current_user
+  end
+
   def new
     @users = User.all
     @user = User.new
