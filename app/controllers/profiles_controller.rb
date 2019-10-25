@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
 
         before_action :selected_user, only: [:show, :edit, :update]
+        skip_before_action :authenticated
     
       def index
         @users = User.all
@@ -10,7 +11,7 @@ class ProfilesController < ApplicationController
       def show
         @users = User.all
         @user = User.find_by_username(params[:id])
-        @currentuser = User.find(session[:user_id])
+        # @currentuser = User.find(session[:user_id])
         @selecteduser = User.find_by_username(params[:username])
         @selectcontacts = User.find_by_username(params[:username])
       end
@@ -32,7 +33,7 @@ class ProfilesController < ApplicationController
       end
     
       def select_contact
-        # @selectcontacts = User.find(params[:id])
+         @selectcontacts = User.find(params[:id])
       end
       
     

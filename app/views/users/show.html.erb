@@ -22,7 +22,7 @@
     <%= c.collection_select :kind, @kind, :to_s, :to_s, include_blank: false %>    
     <%= c.text_field :value, placeholder: 'Value' %>
   <% end %>
-  <%= f.submit %>
+  <%= f.submit "Add Contact"%>
 <% end %>
 
 <br><br><br>
