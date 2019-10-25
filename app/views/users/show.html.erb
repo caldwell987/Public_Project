@@ -1,63 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<title>W3.CSS Template</title>
+<h1> <%= @user.firstname %> <%= @user.lastname %></h1>
+<p>Username: <%=h @user.username %></p>
+<br>
 
-    <!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="/login" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-    <a href="/users/profile" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROFILE</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
-    <!DOCTYPE html>
-<html lang="en">
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body {font-family: "Lato", sans-serif}
-.mySlides {display: none}
-</style>
-<body>
-    
-    
-
-    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
-  </div>
-</div>  
+<h2>Contacts:</h2>
+<h5>
+  <% @contacts.each do |i| %>
+    <li>
+      <%= i.kind %>:
+      <%= link_to i.value, edit_contact_path(i) %>
+      <% end %>
+    </li>
+</h5>
 
 <br><br><br>
 
-
-
-<h1> <%= @user.firstname %> <%= @user.lastname %></h1>
-    <br>
-<h2>Contacts:</h2>
-<br>
-
-<h5>
-<% @contacts.each do |i| %>
-<li>
-<%= i.kind %>:
-<%= link_to i.value, edit_contact_path(i) %>
-</li>
-<% end %>
-</h5>
-
-    
-
-<%= link_to 'Add Contact', new_contact_path, class: 'button' %>
+<%# link_to 'Add Contact', new_contact_path, class: 'button' %>
 <%= form_for @user do |f| %>
   <%= f.fields_for :contacts, @user.contacts.build do |c| %>
     <%= c.hidden_field :user_id, value: @user.id%>
-    <%= c.text_field :kind, placeholder: 'Kind' %>
+    <p>
+    <%= c.collection_select :kind, @kind, :to_s, :to_s, include_blank: false %>    
     <%= c.text_field :value, placeholder: 'Value' %>
   <% end %>
   <%= f.submit %>
 <% end %>
+
+<br><br><br>
 
 <%= form_with url:'/logout', method: 'delete' do |f| %>
 	<%= f.submit "Logout", class: 'button' %>
@@ -65,84 +33,37 @@ body {font-family: "Lato", sans-serif}
 
 <br><br><br>
 
-<p>Username: <%=h @user.username %></p>
 <p><%= link_to "Find Friends", users_path %></p>
 
 
 <br><br><br>
 
-<%= link_to "Add Friend" %>
 
-
-<br><br><br>
 
 <h2>Your Friends</h2>
 <ul>
   <% for friendship in @user.friendships %>
   <li>
-    <%= h friendship.friend.username %>
-    (<%= link_to "remove", friendship, :method => :delete %>)
+    <%= h link_to friendship.friend.username, profile_path(friendship.friend.username) %>
+    <%= link_to "remove", friendship, :method => :delete %>)
   </li>
   <% end %>  
 </ul>
 <br><br><br>
 
-<h2>Users Who Have Befriended You</h2>
-<ul>
-  <% for user in @user.inverse_friends %>
-  <li><%= h user.username %></li>
-  <% end %>
-</ul>
-
-<br><br><br>
-<br><br><br>
 
 
-<style>
-.button {
 
-  display: inline-block;
-  
-  border-radius: 4px;
-  background-color: #f4511e;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  display: inline-block;
-  padding: 15px 30px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
 
-.button span {
-    font-size: 20px;
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
 
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
 
-.button:hover span {
-  padding-right: 25px;
-}
 
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
 
-h1 {
-    color: red;
-    align: center;
-}
-</style>
+
+
+
+
+
+
+
+

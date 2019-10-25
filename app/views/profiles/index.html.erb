@@ -1,25 +1,26 @@
 <h1>Users:</h1>
+
 <% @selectedusers.each do |i| %>
-<li>
-    <%= link_to i.firstname, profile_path(i.username) %>
- </li>
+      <h3> <strong><%=h link_to i.username, profile_path(i.username)%></strong>
+      
 <% end %>
 
 
 <% for user in @users %>
   <div class="user">
     <p>
-      <strong><%=h user.username %></strong>
-      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post, class: 'sup' %>
+      <% end %>
+      <%# link_to 'Add Contact', new_contact_path, class: 'button' %>
+        </h3>
       <div class="clear"></div>
     </p>
   </div>
-<% end %>
 
 
-<h2>Your Friends</h2>
-<ul>
-  <%# for user in @user.friends %>
-  <li><%# h user.username %></li>
-  <%# end %>  
-</ul>
+
+<style>
+.sup {
+color: blue;
+}
+</style>

@@ -8,6 +8,8 @@ class ProfilesController < ApplicationController
       end
     
       def show
+        @users = User.all
+        @user = User.find_by_username(params[:id])
         @currentuser = User.find(session[:user_id])
         @selecteduser = User.find_by_username(params[:username])
         @selectcontacts = User.find_by_username(params[:username])

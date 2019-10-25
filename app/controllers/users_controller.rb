@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     
   before_action :current_user, only: [:show, :edit, :update]
+  before_action :kind, only: [:new, :edit, :update, :destroy]
   skip_before_action :authenticated, only: [:new, :create]
 
   def index
@@ -10,6 +11,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(session[:user_id])
     @contacts = current_user.contacts
+    @selecteduser = User.find_by_username(params[:username])
+    @kind = ["Phone", "Email", "Website", "Linkedin", "Facebook", "Instagram", "Twitter"]
   end
 
   def new
@@ -51,6 +54,9 @@ class UsersController < ApplicationController
       
   end
 
+  def kind
+    @kind = ["Phone", "Email", "Website", "Linkedin", "Facebook", "Instagram", "Twitter"]
+  end
 
 private
 
