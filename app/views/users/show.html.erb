@@ -45,7 +45,7 @@
   <% for friendship in @user.friendships %>
   <li>
     <%= h link_to friendship.friend.username, profile_path(friendship.friend.username) %>
-    <%= link_to "remove", friendship, :method => :delete %>)
+    <%= link_to "remove", friendship, :method => :delete %>
   </li>
   <% end %>  
 </ul>
