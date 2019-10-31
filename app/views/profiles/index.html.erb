@@ -1,17 +1,17 @@
-<h1>Users:</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Contacts</title>
+<linkhref="styles.css">
+</head>
+
+<body>
+<h1 class="profile">Users:</h1>
 
 <% @selectedusers.each do |i| %>
       <h3> <strong><%=h link_to i.username, profile_path(i.username)%></strong>
       
 <% end %>
-
-
-
-
-
-
-<style>
-.sup {
-color: blue;
-}
-</style>
+</body>
+</html>

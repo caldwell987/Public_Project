@@ -1,134 +1,31 @@
-
-
-<h1> <%= @selectuser.firstname %> <%= @selectuser.lastname %> </h1> 
-
-
-
-      <%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %>
-
-
-<br><br>
-<h2>Contacts:</h2>
-
-<h5>
-<% @selectuser.contacts.each do |i| %>
-<li>
-<%= i.kind %>:
-<%= i.value %>
-</li>
-<% end %>
-</h5>
-
-<br><br><br>
-
-
-
-
-
-<br><br><br>
-<h1>Download Contact:</h1>
-
-<img src="http://bvcard.com/sites/bvcard.com/files//mobile_codes/c205d1df0cdcb9fa957770c66867afc6.png" alt="vCard QRcode" title="vCard QRcode">
-<a href="http://qr.w69b.com/g/oqFzqOpnq/download" download>Download link</a>
-
-
-
-
-
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="robots" content="noindex">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/styles/qrserve.css"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/images/icon.png"/>
-    <link href='http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <script type="text/javascript">
-(function() {
-  var ga = document.createElement('script');
-  ga.type = 'text/javascript';
-  ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(ga, s);
-})();
-
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', '']);
-_gaq.push(['_trackPageview']);
-</script>
-    
-<title> David Caldwell</title>
-
+    <link rel="stylesheet" href="styles.css">
+    <title>Contacts</title>
 </head>
+
 <body>
+    <br><br>
+    <h1><%= @selectuser.firstname %> <%= @selectuser.lastname %></h1> 
+    <p><%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %></p>
+    <br><br>
+    <h2>Contacts:</h2>
+        <h5> 
+        <div id="contactdetails">   
+        <% @selectuser.contacts.each do |i| %>
+            <li>
+            <%= i.kind %>:
+            <%= i.value %>
+            </li>
+            <% end %>
+            <br>
+            <a class="bbb" href="http://qr.w69b.com/g/oqFzqOpnq/download">Import contact as VCard</a>
+            </div>
+        </h5>
 
-<div class="contact">
-    <address>
-        
-        <div class="name"> David Caldwell</div>
-        
-        
-        <div class="organization">Avvitt</div>
-        
-        
-        <div class="phone">
-            <a href="tel:2817043291">2817043291</a>
+<br><br><br><br><br><br>
 
-            <div class="item-type">Phone</div>
-        </div>
-        
-        
-        
-        
-        <div class="email">
-            <a href="mailto:David@avvitt.com">David@avvitt.com</a>
-
-            <div class="item-type">Email</div>
-        </div>
-        
-        
-        <div class="url">
-            <a href="http://www.avvittanimation.com">http://www.avvittanimation.com</a>
-
-            <div class="item-type">Web</div>
-        </div>
-        
-        <div class="address" id="address">
-            
-            
-            
-            
-        </div>
-    </address>
-    <a class="btn" href="oqFzqOpnq/download">Import contact as VCard</a>
-</div>
-<script type="text/javascript">
-    (function() {
-        function addAddressHandler() {
-            var elem = document.getElementById('address');
-            elem.addEventListener('click', function() {
-                var txt = elem.textContent.replace(/\s+/g, ' ');
-                window.location.href = 'http://maps.google.com?q=' +
-                        encodeURIComponent(txt);
-            }, false);
-        }
-
-        addAddressHandler();
-    })();
-</script>
 
 </body>
 </html>
-<br><br><br>
-<br><br><br>
-
-
-<style>
-.sss {
-color: blue;
-size: small;
-}
-</style>
